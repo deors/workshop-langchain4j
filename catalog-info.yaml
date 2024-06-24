@@ -1,0 +1,22 @@
+apiVersion: backstage.io/v1alpha1
+kind: Component
+metadata:
+  name: workshop-langchain4j
+  description: Workshop about GenAI-enabled applications powered with Langchain4j.
+  tags:
+    - GenAI
+    - Java
+    - JVM
+    - Langchain4j
+    - Ollama
+  links:
+    - url: https://github.com/deors/workshop-langchain4j
+      title: Workshop Langchain4j
+      icon: github
+  annotations:
+    backstage.io/techdocs-ref: dir:.  
+spec:
+  lifecycle: production
+  type: archetype
+  owner: Jorge Hidalgo
+  system: public-websites

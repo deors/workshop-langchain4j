@@ -6,7 +6,7 @@ import dev.langchain4j.model.ollama.OllamaChatModel;
 public interface OllamaBaseAskAboutCode {
 
     static void askAboutCode(String baseUrl, String modelName) {
-        // gemma:2b model running locally with Ollama
+        // loads a model running locally with Ollama
         ChatLanguageModel model = OllamaChatModel.builder()
             .baseUrl(baseUrl)
             .modelName(modelName)

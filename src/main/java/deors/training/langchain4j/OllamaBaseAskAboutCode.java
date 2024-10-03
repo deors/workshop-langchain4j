@@ -1,5 +1,7 @@
 package deors.training.langchain4j;
 
+import java.time.Duration;
+
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 
@@ -10,6 +12,7 @@ public interface OllamaBaseAskAboutCode {
         ChatLanguageModel model = OllamaChatModel.builder()
             .baseUrl(baseUrl)
             .modelName(modelName)
+            .timeout(Duration.ofSeconds(120))
             .build();
 
         // the first prompt

@@ -6,7 +6,7 @@ import dev.langchain4j.model.ollama.OllamaChatModel;
 public class OllamaCodellamaCodeAssist {
 
     void main() {
-        // gemma:2b model running locally with Ollama
+        // codellama:7b-code model running locally with Ollama
         ChatLanguageModel model = OllamaChatModel.builder()
             .baseUrl("http://localhost:11434")
             .modelName("codellama:7b-code")

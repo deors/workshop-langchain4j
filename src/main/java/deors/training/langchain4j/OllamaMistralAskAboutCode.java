@@ -1,0 +1,9 @@
+package deors.training.langchain4j;
+
+public class OllamaMistralAskAboutCode {
+
+    void main() {
+        // mistral:7b model running locally with Ollama
+        OllamaBaseAskAboutCode.askAboutCode("http://localhost:11434", "mistral:7b");
+    }
+}

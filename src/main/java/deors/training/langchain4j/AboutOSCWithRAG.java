@@ -60,10 +60,10 @@ public class AboutOSCWithRAG {
             .minScore(0.8)
             .build();
         
-        // llama3.1:8b model running locally with Ollama
+        // deepseek-r1:8b model running locally with Ollama
         ChatLanguageModel chatModel = OllamaChatModel.builder()
             .baseUrl("http://localhost:11434")
-            .modelName("llama3.1:8b")
+            .modelName("deepseek-r1:8b")
             .build();
 
         // define context window

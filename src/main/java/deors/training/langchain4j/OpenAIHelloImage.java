@@ -16,11 +16,8 @@ public class OpenAIHelloImage {
             on a hot IT topic.
             The people is looking at the presenter, who is
             standing next to a tall table and laptop, with
-            a giant screen in her back showing the
-            presentation content.
-            The conference is named OpenSouthCode, so please
-            add the name of the conference to the content of
-            the presentation.""");
+            a giant screen behind the presenter showing the
+            presentation content.""");
 
         System.out.println(response.content().url());
     }

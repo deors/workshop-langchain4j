@@ -16,8 +16,8 @@ import dev.langchain4j.data.segment.TextSegment;
 import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.MessageWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
-import dev.langchain4j.model.embedding.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.embedding.EmbeddingModel;
+import dev.langchain4j.model.embedding.onnx.allminilml6v2.AllMiniLmL6V2EmbeddingModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 import dev.langchain4j.rag.content.retriever.ContentRetriever;
 import dev.langchain4j.rag.content.retriever.EmbeddingStoreContentRetriever;
@@ -75,24 +75,24 @@ public class AboutOSCWithRAG {
             .contentRetriever(retriever)
             .build();
         
-            // ask about OpenSouthCode 2024
-            String messageAboutOSC = "When is OpenSouthCode 2024 going to be? Do you know what are the main topics scheduled?";
-            System.out.println("\n>>> " + messageAboutOSC);
+        // ask about OpenSouthCode 2024
+        String messageAboutOSC = "When is OpenSouthCode 2024 going to be? Do you know what are the main topics scheduled?";
+        System.out.println("\n>>> " + messageAboutOSC);
 
-            String answerAboutOSC = agent.answer(messageAboutOSC);
-            System.out.println("\n" + answerAboutOSC);
+        String answerAboutOSC = agent.answer(messageAboutOSC);
+        System.out.println("\n" + answerAboutOSC);
 
-            messageAboutOSC = "What is the location for OpenSouthCode 2024?";
-            System.out.println("\n>>> " + messageAboutOSC);
+        messageAboutOSC = "What is the location for OpenSouthCode 2024?";
+        System.out.println("\n>>> " + messageAboutOSC);
 
-            answerAboutOSC = agent.answer(messageAboutOSC);
-            System.out.println("\n" + answerAboutOSC);
+        answerAboutOSC = agent.answer(messageAboutOSC);
+        System.out.println("\n" + answerAboutOSC);
 
-            messageAboutOSC = "What is OpenSouthKids and when is happening?";
-            System.out.println("\n>>> " + messageAboutOSC);
+        messageAboutOSC = "What is OpenSouthKids and when is happening?";
+        System.out.println("\n>>> " + messageAboutOSC);
 
-            answerAboutOSC = agent.answer(messageAboutOSC);
-            System.out.println("\n" + answerAboutOSC);
+        answerAboutOSC = agent.answer(messageAboutOSC);
+        System.out.println("\n" + answerAboutOSC);
     }
 
     interface Agent {

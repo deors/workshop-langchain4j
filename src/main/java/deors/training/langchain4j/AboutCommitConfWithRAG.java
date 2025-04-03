@@ -71,10 +71,10 @@ public class AboutCommitConfWithRAG {
             .minScore(0.8)
             .build();
         
-        // phi4:14b model running locally with Ollama
+        // deepseek-r1:8b model running locally with Ollama
         ChatLanguageModel chatModel = OllamaChatModel.builder()
             .baseUrl("http://localhost:11434")
-            .modelName("phi4:14b")
+            .modelName("deepseek-r1:8b")
             .build();
 
         // define context window

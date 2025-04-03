@@ -11,10 +11,10 @@ import static dev.langchain4j.data.message.UserMessage.userMessage;
 public class AboutCommitConfSimple {
 
     void main() {
-        // phi4:14b model running locally with Ollama
+        // deepseek-r1:8b model running locally with Ollama
         ChatLanguageModel model = OllamaChatModel.builder()
             .baseUrl("http://localhost:11434")
-            .modelName("phi4:14b")
+            .modelName("deepseek-r1:8b")
             .build();
 
         // define context window

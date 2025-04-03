@@ -21,12 +21,20 @@ public class AboutCommitConfSimple {
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
 
         // ask about Commit Conf 2025
-        String messageAskAbout = "When is Commit Conf 2025 going to be? Do you know what are the main topics scheduled?";
-        chatMemory.add(userMessage(messageAskAbout));
-        System.out.println("\n>>> " + messageAskAbout);
+        String[] questions = {
+            "When is Commit Conf 2025 going to be?",
+            "Do you know what are the main topics scheduled?",
+            "What is the location for Commit Conf 2025?",
+            "How can I get to Commit Conf 2025?",
+            "Are meals included?",
+        };
 
-        AiMessage answerAskAbout = model.generate(chatMemory.messages()).content();
-        System.out.println(answerAskAbout.text());
-        chatMemory.add(answerAskAbout);
+        for (var q : questions) {
+            System.out.println("\n>>> " + q);
+            chatMemory.add(userMessage(q));
+            AiMessage a = model.generate(chatMemory.messages()).content();;
+            chatMemory.add(a);
+            System.out.println("\n" + a.text());
+        }
     }
 }

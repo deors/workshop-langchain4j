@@ -86,36 +86,20 @@ public class AboutCommitConfWithRAG {
             .contentRetriever(retriever)
             .build();
         
-            // ask about Commit Conf 2025
-            String messageAskAbout = "When is Commit Conf 2025 going to be?";
-            System.out.println("\n>>> " + messageAskAbout);
+        // ask about Commit Conf 2025
+        String[] questions = {
+            "When is Commit Conf 2025 going to be?",
+            "Do you know what are the main topics scheduled?",
+            "What is the location for Commit Conf 2025?",
+            "How can I get to Commit Conf 2025?",
+            "Are meals included?",
+        };
 
-            String answerAskAbout = agent.answer(messageAskAbout);
-            System.out.println("\n" + answerAskAbout);
-
-            messageAskAbout = "Do you know what are the main topics scheduled?";
-            System.out.println("\n>>> " + messageAskAbout);
-
-            answerAskAbout = agent.answer(messageAskAbout);
-            System.out.println("\n" + answerAskAbout);
-
-            messageAskAbout = "What is the location for Commit Conf 2025?";
-            System.out.println("\n>>> " + messageAskAbout);
-
-            answerAskAbout = agent.answer(messageAskAbout);
-            System.out.println("\n" + answerAskAbout);
-
-            messageAskAbout = "Are meals included?";
-            System.out.println("\n>>> " + messageAskAbout);
-
-            answerAskAbout = agent.answer(messageAskAbout);
-            System.out.println("\n" + answerAskAbout);
-
-            messageAskAbout = "How can I get to Commit Conf 2025?";
-            System.out.println("\n>>> " + messageAskAbout);
-
-            answerAskAbout = agent.answer(messageAskAbout);
-            System.out.println("\n" + answerAskAbout);
+        for (var q : questions) {
+            System.out.println("\n>>> " + q);
+            var a = agent.answer(q);
+            System.out.println("\n" + a);
+        }
     }
 
     interface Agent {

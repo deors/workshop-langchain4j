@@ -49,19 +49,19 @@ public class AboutCommitConfWithRAG {
             .embeddingStore(embStore)
             .build();
 
-        // load a PDF file from the classpath
-        Path path = Path.of(ClassLoader.getSystemResource("info-sobre-commit-2025.pdf").toURI());
-        Document document = FileSystemDocumentLoader.loadDocument(path, new ApacheTikaDocumentParser());
+        // load external documents
+        String[] docs = {
+            "commit-conf-2025-info.pdf",
+            "commit-conf-2025-como-llegar.pdf",
+        };
 
-        // ingest the document into the embedding store
-        ingestor.ingest(document);
-
-        // load a second PDF file from the classpath
-        path = Path.of(ClassLoader.getSystemResource("como-llegar-a-commit-2025.pdf").toURI());
-        document = FileSystemDocumentLoader.loadDocument(path, new ApacheTikaDocumentParser());
-
-        // ingest the second document
-        ingestor.ingest(document);
+        // ingest the documents into the embedding store
+        for (var d : docs) {
+            Path path = Path.of(ClassLoader.getSystemResource(d).toURI());
+            Document document = FileSystemDocumentLoader.loadDocument(
+                path, new ApacheTikaDocumentParser());
+            ingestor.ingest(document);
+        }
 
         // define the content retriever connecting everything together
         ContentRetriever retriever = EmbeddingStoreContentRetriever.builder()

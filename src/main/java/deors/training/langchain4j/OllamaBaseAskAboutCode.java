@@ -16,17 +16,17 @@ public interface OllamaBaseAskAboutCode {
             .build();
 
         // the first prompt
-        String message1 = """
+        String message = """
             You are a senior software engineer, expert with open source technologies.
             Could you provide example code to sort a list of dates in Java and Go languages?
         """;
-        System.out.println("\n>>>\n" + message1);
+        System.out.println("\n>>>\n" + message);
 
-        String answer1 = model.generate(message1);
-        System.out.println(answer1);
+        String answer = model.generate(message);
+        System.out.println(answer);
 
         // the second prompt
-        String message2 = """
+        message = """
             You are a senior software engineer, expert with open source technologies,
             specially with Java and the Spring Boot framework.
             Consider a domain entity named Film with attributes id, title,
@@ -34,9 +34,9 @@ public interface OllamaBaseAskAboutCode {
             Could you provide the simplest code to start a web server and return
             RESTful responses to the Film domain entity?
         """;
-        System.out.println("\n>>>\n" + message2);
+        System.out.println("\n>>>\n" + message);
 
-        String answer2 = model.generate(message2);
-        System.out.println(answer2);
+        answer = model.generate(message);
+        System.out.println(answer);
     }
 }

@@ -31,7 +31,7 @@ public class AboutCommitConfWithRAG {
     
     void main() throws URISyntaxException {
         Logger rootLogger = (Logger) LoggerFactory.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME);
-        rootLogger.setLevel(Level.INFO);
+        rootLogger.setLevel(Level.ERROR);
 
         // an embedding model good for simple documents
         EmbeddingModel embModel = new AllMiniLmL6V2EmbeddingModel();
@@ -39,17 +39,28 @@ public class AboutCommitConfWithRAG {
         // an in-memory embedding store
         EmbeddingStore<TextSegment> embStore = new InMemoryEmbeddingStore<>();
 
-        // load a PDF file from the classpath
-        Path path = Path.of(ClassLoader.getSystemResource("info-sobre-commit-2025.pdf").toURI());
-        Document document = FileSystemDocumentLoader.loadDocument(path, new ApacheTikaDocumentParser());
+        // a document splitter (to convert content to tokens)
         DocumentSplitter splitter = DocumentSplitters.recursive(256, 0);
 
-        // ingest the document into the embedding store
+        // the ingestor which combines the previous components
         EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
             .documentSplitter(splitter)
             .embeddingModel(embModel)
             .embeddingStore(embStore)
             .build();
+
+        // load a PDF file from the classpath
+        Path path = Path.of(ClassLoader.getSystemResource("info-sobre-commit-2025.pdf").toURI());
+        Document document = FileSystemDocumentLoader.loadDocument(path, new ApacheTikaDocumentParser());
+
+        // ingest the document into the embedding store
+        ingestor.ingest(document);
+
+        // load a second PDF file from the classpath
+        path = Path.of(ClassLoader.getSystemResource("como-llegar-a-commit-2025.pdf").toURI());
+        document = FileSystemDocumentLoader.loadDocument(path, new ApacheTikaDocumentParser());
+
+        // ingest the second document
         ingestor.ingest(document);
 
         // define the content retriever connecting everything together
@@ -60,10 +71,10 @@ public class AboutCommitConfWithRAG {
             .minScore(0.8)
             .build();
         
-        // deepseek-r1:8b model running locally with Ollama
+        // phi4:14b model running locally with Ollama
         ChatLanguageModel chatModel = OllamaChatModel.builder()
             .baseUrl("http://localhost:11434")
-            .modelName("deepseek-r1:8b")
+            .modelName("phi4:14b")
             .build();
 
         // define context window
@@ -76,10 +87,16 @@ public class AboutCommitConfWithRAG {
             .build();
         
             // ask about Commit Conf 2025
-            String messageAskAbout = "When is Commit Conf 2025 going to be? Do you know what are the main topics scheduled?";
+            String messageAskAbout = "When is Commit Conf 2025 going to be?";
             System.out.println("\n>>> " + messageAskAbout);
 
             String answerAskAbout = agent.answer(messageAskAbout);
+            System.out.println("\n" + answerAskAbout);
+
+            messageAskAbout = "Do you know what are the main topics scheduled?";
+            System.out.println("\n>>> " + messageAskAbout);
+
+            answerAskAbout = agent.answer(messageAskAbout);
             System.out.println("\n" + answerAskAbout);
 
             messageAskAbout = "What is the location for Commit Conf 2025?";
@@ -88,7 +105,13 @@ public class AboutCommitConfWithRAG {
             answerAskAbout = agent.answer(messageAskAbout);
             System.out.println("\n" + answerAskAbout);
 
-            messageAskAbout = "Are there any special or side events happening at the same time as Commit Conf main event?";
+            messageAskAbout = "Are meals included?";
+            System.out.println("\n>>> " + messageAskAbout);
+
+            answerAskAbout = agent.answer(messageAskAbout);
+            System.out.println("\n" + answerAskAbout);
+
+            messageAskAbout = "How can I get to Commit Conf 2025?";
             System.out.println("\n>>> " + messageAskAbout);
 
             answerAskAbout = agent.answer(messageAskAbout);
@@ -99,7 +122,8 @@ public class AboutCommitConfWithRAG {
         @SystemMessage("""
             You are an expert in technology events that is providing guidance to
             people willing to attend IT events in Spain. You have a great knowledge
-            on certain events for which you have the press release.
+            on certain events for which you have specific announcements published
+            by the event organizers.
             """)
         String answer(String inputMessage);
     }

@@ -21,7 +21,7 @@ public class OllamaBaseSimpleContext {
         ChatMemory chatMemory = MessageWindowChatMemory.withMaxMessages(10);
 
         // initial prompt with name and location
-        String message = "Hello world! My name is Jorge and I'm writing this from Commit Conf.";
+        String message = "Hello world! My name is Jorge and I'm writing this from the conference stage.";
         chatMemory.add(userMessage(message));
         System.out.println("\n>>> " + message);
 
@@ -48,7 +48,7 @@ public class OllamaBaseSimpleContext {
         chatMemory.add(answer);
 
         // ask about the event
-        message = "What do you know about Commit Conf?";
+        message = "What do you know about technical conferences in Spain?";
         chatMemory.add(userMessage(message));
         System.out.println("\n>>> " + message);
 

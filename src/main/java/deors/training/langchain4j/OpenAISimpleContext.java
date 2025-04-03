@@ -5,6 +5,7 @@ import dev.langchain4j.memory.ChatMemory;
 import dev.langchain4j.memory.chat.TokenWindowChatMemory;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.openai.OpenAiChatModel;
+import dev.langchain4j.model.openai.OpenAiChatModelName;
 import dev.langchain4j.model.openai.OpenAiTokenizer;
 
 import static dev.langchain4j.data.message.UserMessage.userMessage;
@@ -13,13 +14,16 @@ public class OpenAISimpleContext {
 
     void main() {
         // OpenAI model
-        ChatLanguageModel model = OpenAiChatModel.withApiKey(System.getenv("OPENAI_API_KEY"));
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
 
         // define context window
-        ChatMemory chatMemory = TokenWindowChatMemory.withMaxTokens(300, new OpenAiTokenizer());
+        ChatMemory chatMemory = TokenWindowChatMemory.withMaxTokens(
+            300, new OpenAiTokenizer(OpenAiChatModelName.GPT_4_O_MINI));
 
         // initial prompt with name and location
-        String message1 = "Hello world! My name is Jorge and I'm writing this from OpenSouthCode.";
+        String message1 = "Hello world! My name is Jorge and I'm writing this from the conference stage.";
         chatMemory.add(userMessage(message1));
         System.out.println("\n>>> " + message1);
 
@@ -46,7 +50,7 @@ public class OpenAISimpleContext {
         chatMemory.add(answerWithLocation);
 
         // ask about OpenSouthCode
-        String message4 = "What do you know about OpenSouthCode?";
+        String message4 = "What do you know about technical conferences in Spain?";
         chatMemory.add(userMessage(message4));
         System.out.println("\n>>> " + message4);
 

@@ -7,7 +7,9 @@ public class OpenAIHelloWorld {
 
     void main() {
         // OpenAI model
-        ChatLanguageModel model = OpenAiChatModel.withApiKey(System.getenv("OPENAI_API_KEY"));
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
 
         // the first prompt
         String message = "Hello world!";

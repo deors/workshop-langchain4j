@@ -7,7 +7,9 @@ public class OpenAIAskAboutCode {
 
     void main() {
         // loads a model running locally with Ollama
-        ChatLanguageModel model = OpenAiChatModel.withApiKey(System.getenv("OPENAI_API_KEY"));
+        ChatLanguageModel model = OpenAiChatModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
 
         // the first prompt
         String message1 = """

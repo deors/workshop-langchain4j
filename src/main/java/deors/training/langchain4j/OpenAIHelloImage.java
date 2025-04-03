@@ -8,7 +8,10 @@ import dev.langchain4j.model.output.Response;
 public class OpenAIHelloImage {
     
     void main() {
-        ImageModel model = OpenAiImageModel.withApiKey(System.getenv("OPENAI_API_KEY"));
+        // OpenAI image model
+        ImageModel model = OpenAiImageModel.builder()
+            .apiKey(System.getenv("OPENAI_API_KEY"))
+            .build();
 
         Response<Image> response = model.generate("""
             Software engineers of diverse background,

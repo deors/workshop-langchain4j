@@ -90,9 +90,7 @@ public class AboutCommitConfWithRAG {
         String[] questions = {
             "When is Commit Conf 2025 going to be?",
             "Do you know what are the main topics scheduled?",
-            "What is the location for Commit Conf 2025?",
-            "How can I get to Commit Conf 2025?",
-            "Are meals included?",
+            "What are the metro ligero and bus options to get to the venue?",
         };
 
         for (var q : questions) {

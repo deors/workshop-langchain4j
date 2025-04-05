@@ -15,6 +15,7 @@ public class OllamaBaseSimpleContext {
         ChatLanguageModel model = OllamaChatModel.builder()
             .baseUrl(baseUrl)
             .modelName(modelName)
+            .temperature(0.0)
             .build();
 
         // define context window

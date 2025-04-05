@@ -12,6 +12,7 @@ public interface OllamaBaseAskAboutCode {
         ChatLanguageModel model = OllamaChatModel.builder()
             .baseUrl(baseUrl)
             .modelName(modelName)
+            .temperature(0.0)
             .timeout(Duration.ofSeconds(120))
             .build();
 

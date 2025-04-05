@@ -75,6 +75,7 @@ public class AboutCommitConfWithRAG {
         ChatLanguageModel chatModel = OllamaChatModel.builder()
             .baseUrl("http://localhost:11434")
             .modelName("deepseek-r1:8b")
+            .temperature(0.0)
             .build();
 
         // define context window

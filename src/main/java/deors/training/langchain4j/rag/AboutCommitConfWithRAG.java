@@ -1,4 +1,4 @@
-package deors.training.langchain4j;
+package deors.training.langchain4j.rag;
 
 import java.net.URISyntaxException;
 import java.nio.file.Path;
@@ -27,11 +27,11 @@ import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 
-public class AboutOSCWithRAG {
+public class AboutCommitConfWithRAG {
     
     void main() throws URISyntaxException {
         Logger rootLogger = (Logger) LoggerFactory.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME);
-        rootLogger.setLevel(Level.INFO);
+        rootLogger.setLevel(Level.ERROR);
 
         // an embedding model good for simple documents
         EmbeddingModel embModel = new AllMiniLmL6V2EmbeddingModel();
@@ -39,18 +39,29 @@ public class AboutOSCWithRAG {
         // an in-memory embedding store
         EmbeddingStore<TextSegment> embStore = new InMemoryEmbeddingStore<>();
 
-        // load a PDF file from the classpath
-        Path path = Path.of(ClassLoader.getSystemResource("OpenSouthCode24-Press-Release-June.pdf").toURI());
-        Document document = FileSystemDocumentLoader.loadDocument(path, new ApacheTikaDocumentParser());
+        // a document splitter (to convert content to tokens)
         DocumentSplitter splitter = DocumentSplitters.recursive(256, 0);
 
-        // ingest the document into the embedding store
+        // the ingestor which combines the previous components
         EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
             .documentSplitter(splitter)
             .embeddingModel(embModel)
             .embeddingStore(embStore)
             .build();
-        ingestor.ingest(document);
+
+        // load external documents
+        String[] docs = {
+            "commit-conf-2025-info.pdf",
+            "commit-conf-2025-como-llegar.pdf",
+        };
+
+        // ingest the documents into the embedding store
+        for (var d : docs) {
+            Path path = Path.of(ClassLoader.getSystemResource(d).toURI());
+            Document document = FileSystemDocumentLoader.loadDocument(
+                path, new ApacheTikaDocumentParser());
+            ingestor.ingest(document);
+        }
 
         // define the content retriever connecting everything together
         ContentRetriever retriever = EmbeddingStoreContentRetriever.builder()
@@ -64,6 +75,7 @@ public class AboutOSCWithRAG {
         ChatLanguageModel chatModel = OllamaChatModel.builder()
             .baseUrl("http://localhost:11434")
             .modelName("deepseek-r1:8b")
+            .temperature(0.0)
             .build();
 
         // define context window
@@ -75,31 +87,26 @@ public class AboutOSCWithRAG {
             .contentRetriever(retriever)
             .build();
         
-        // ask about OpenSouthCode 2024
-        String messageAboutOSC = "When is OpenSouthCode 2024 going to be? Do you know what are the main topics scheduled?";
-        System.out.println("\n>>> " + messageAboutOSC);
+        // ask about Commit Conf 2025
+        String[] questions = {
+            "When is Commit Conf 2025 going to be?",
+            "Do you know what are the main topics scheduled?",
+            "What are the metro ligero and bus options to get to the venue?",
+        };
 
-        String answerAboutOSC = agent.answer(messageAboutOSC);
-        System.out.println("\n" + answerAboutOSC);
-
-        messageAboutOSC = "What is the location for OpenSouthCode 2024?";
-        System.out.println("\n>>> " + messageAboutOSC);
-
-        answerAboutOSC = agent.answer(messageAboutOSC);
-        System.out.println("\n" + answerAboutOSC);
-
-        messageAboutOSC = "What is OpenSouthKids and when is happening?";
-        System.out.println("\n>>> " + messageAboutOSC);
-
-        answerAboutOSC = agent.answer(messageAboutOSC);
-        System.out.println("\n" + answerAboutOSC);
+        for (var q : questions) {
+            System.out.println("\n>>> " + q);
+            var a = agent.answer(q);
+            System.out.println("\n" + a);
+        }
     }
 
     interface Agent {
         @SystemMessage("""
             You are an expert in technology events that is providing guidance to
             people willing to attend IT events in Spain. You have a great knowledge
-            on certain events for which you have the press release.
+            on certain events for which you have specific announcements published
+            by the event organizers.
             """)
         String answer(String inputMessage);
     }

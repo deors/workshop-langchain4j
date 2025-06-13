@@ -1,4 +1,4 @@
-package deors.training.langchain4j;
+package deors.training.langchain4j.rag;
 
 import java.net.URISyntaxException;
 import java.nio.file.Path;
@@ -27,11 +27,11 @@ import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 
-public class AboutCommitConfWithRAG {
+public class AgentWithEmbeddings {
     
     void main() throws URISyntaxException {
         Logger rootLogger = (Logger) LoggerFactory.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME);
-        rootLogger.setLevel(Level.ERROR);
+        rootLogger.setLevel(Level.INFO);
 
         // an embedding model good for simple documents
         EmbeddingModel embModel = new AllMiniLmL6V2EmbeddingModel();
@@ -39,29 +39,18 @@ public class AboutCommitConfWithRAG {
         // an in-memory embedding store
         EmbeddingStore<TextSegment> embStore = new InMemoryEmbeddingStore<>();
 
-        // a document splitter (to convert content to tokens)
+        // load a PDF file from the classpath
+        Path path = Path.of(ClassLoader.getSystemResource("the-role-of-a-platform.pdf").toURI());
+        Document document = FileSystemDocumentLoader.loadDocument(path, new ApacheTikaDocumentParser());
         DocumentSplitter splitter = DocumentSplitters.recursive(256, 0);
 
-        // the ingestor which combines the previous components
+        // ingest the document into the embedding store
         EmbeddingStoreIngestor ingestor = EmbeddingStoreIngestor.builder()
             .documentSplitter(splitter)
             .embeddingModel(embModel)
             .embeddingStore(embStore)
             .build();
-
-        // load external documents
-        String[] docs = {
-            "commit-conf-2025-info.pdf",
-            "commit-conf-2025-como-llegar.pdf",
-        };
-
-        // ingest the documents into the embedding store
-        for (var d : docs) {
-            Path path = Path.of(ClassLoader.getSystemResource(d).toURI());
-            Document document = FileSystemDocumentLoader.loadDocument(
-                path, new ApacheTikaDocumentParser());
-            ingestor.ingest(document);
-        }
+        ingestor.ingest(document);
 
         // define the content retriever connecting everything together
         ContentRetriever retriever = EmbeddingStoreContentRetriever.builder()
@@ -71,11 +60,10 @@ public class AboutCommitConfWithRAG {
             .minScore(0.8)
             .build();
         
-        // deepseek-r1:8b model running locally with Ollama
+        // llama3:8b model running locally with Ollama
         ChatLanguageModel chatModel = OllamaChatModel.builder()
             .baseUrl("http://localhost:11434")
-            .modelName("deepseek-r1:8b")
-            .temperature(0.0)
+            .modelName("llama3:8b")
             .build();
 
         // define context window
@@ -87,26 +75,28 @@ public class AboutCommitConfWithRAG {
             .contentRetriever(retriever)
             .build();
         
-        // ask about Commit Conf 2025
-        String[] questions = {
-            "When is Commit Conf 2025 going to be?",
-            "Do you know what are the main topics scheduled?",
-            "What are the metro ligero and bus options to get to the venue?",
-        };
+        String message1 = "Could you summarize in 50 words the main concepts about platform engineering?";
+        System.out.println("\n>>> " + message1);
 
-        for (var q : questions) {
-            System.out.println("\n>>> " + q);
-            var a = agent.answer(q);
-            System.out.println("\n" + a);
-        }
+        String answer1 = agent.answer(message1);
+        System.out.println("\n" + answer1);
+    
+        String message2 = "Could you describe the high-level process to adopt platform engineering in an organization?";
+        System.out.println("\n>>> " + message2);
+
+        String answer2 = agent.answer(message2);
+        System.out.println("\n" + answer2);
+    
+        String message3 = "What are the main benefits that can be expected after adopting a platform engineering approach?";
+        System.out.println("\n>>> " + message3);
+
+        String answer3 = agent.answer(message3);
+        System.out.println("\n" + answer3);
     }
 
     interface Agent {
         @SystemMessage("""
-            You are an expert in technology events that is providing guidance to
-            people willing to attend IT events in Spain. You have a great knowledge
-            on certain events for which you have specific announcements published
-            by the event organizers.
+            You are an expert in information technologies and software engineering.
             """)
         String answer(String inputMessage);
     }

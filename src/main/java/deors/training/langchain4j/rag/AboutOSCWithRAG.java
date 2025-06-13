@@ -1,4 +1,4 @@
-package deors.training.langchain4j;
+package deors.training.langchain4j.rag;
 
 import java.net.URISyntaxException;
 import java.nio.file.Path;
@@ -27,7 +27,7 @@ import dev.langchain4j.store.embedding.EmbeddingStore;
 import dev.langchain4j.store.embedding.EmbeddingStoreIngestor;
 import dev.langchain4j.store.embedding.inmemory.InMemoryEmbeddingStore;
 
-public class AgentWithEmbeddings {
+public class AboutOSCWithRAG {
     
     void main() throws URISyntaxException {
         Logger rootLogger = (Logger) LoggerFactory.getLogger(org.slf4j.Logger.ROOT_LOGGER_NAME);
@@ -40,7 +40,7 @@ public class AgentWithEmbeddings {
         EmbeddingStore<TextSegment> embStore = new InMemoryEmbeddingStore<>();
 
         // load a PDF file from the classpath
-        Path path = Path.of(ClassLoader.getSystemResource("the-role-of-a-platform.pdf").toURI());
+        Path path = Path.of(ClassLoader.getSystemResource("OpenSouthCode24-Press-Release-June.pdf").toURI());
         Document document = FileSystemDocumentLoader.loadDocument(path, new ApacheTikaDocumentParser());
         DocumentSplitter splitter = DocumentSplitters.recursive(256, 0);
 
@@ -60,10 +60,10 @@ public class AgentWithEmbeddings {
             .minScore(0.8)
             .build();
         
-        // llama3:8b model running locally with Ollama
+        // deepseek-r1:8b model running locally with Ollama
         ChatLanguageModel chatModel = OllamaChatModel.builder()
             .baseUrl("http://localhost:11434")
-            .modelName("llama3:8b")
+            .modelName("deepseek-r1:8b")
             .build();
 
         // define context window
@@ -75,28 +75,31 @@ public class AgentWithEmbeddings {
             .contentRetriever(retriever)
             .build();
         
-        String message1 = "Could you summarize in 50 words the main concepts about platform engineering?";
-        System.out.println("\n>>> " + message1);
+        // ask about OpenSouthCode 2024
+        String messageAboutOSC = "When is OpenSouthCode 2024 going to be? Do you know what are the main topics scheduled?";
+        System.out.println("\n>>> " + messageAboutOSC);
 
-        String answer1 = agent.answer(message1);
-        System.out.println("\n" + answer1);
-    
-        String message2 = "Could you describe the high-level process to adopt platform engineering in an organization?";
-        System.out.println("\n>>> " + message2);
+        String answerAboutOSC = agent.answer(messageAboutOSC);
+        System.out.println("\n" + answerAboutOSC);
 
-        String answer2 = agent.answer(message2);
-        System.out.println("\n" + answer2);
-    
-        String message3 = "What are the main benefits that can be expected after adopting a platform engineering approach?";
-        System.out.println("\n>>> " + message3);
+        messageAboutOSC = "What is the location for OpenSouthCode 2024?";
+        System.out.println("\n>>> " + messageAboutOSC);
 
-        String answer3 = agent.answer(message3);
-        System.out.println("\n" + answer3);
+        answerAboutOSC = agent.answer(messageAboutOSC);
+        System.out.println("\n" + answerAboutOSC);
+
+        messageAboutOSC = "What is OpenSouthKids and when is happening?";
+        System.out.println("\n>>> " + messageAboutOSC);
+
+        answerAboutOSC = agent.answer(messageAboutOSC);
+        System.out.println("\n" + answerAboutOSC);
     }
 
     interface Agent {
         @SystemMessage("""
-            You are an expert in information technologies and software engineering.
+            You are an expert in technology events that is providing guidance to
+            people willing to attend IT events in Spain. You have a great knowledge
+            on certain events for which you have the press release.
             """)
         String answer(String inputMessage);
     }

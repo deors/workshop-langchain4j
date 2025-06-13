@@ -1,4 +1,4 @@
-package deors.training.langchain4j;
+package deors.training.langchain4j.rag;
 
 import dev.langchain4j.data.message.AiMessage;
 import dev.langchain4j.memory.ChatMemory;

@@ -1,32 +1,32 @@
-package deors.training.langchain4j;
+package deors.training.langchain4j.codeassist;
 
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 
-public class OllamaCodeqwenCodeAssist {
+public class OllamaCodestralCodeAssist {
 
     void main() {
-        // codeqwen:7b model running locally with Ollama
+        // codestral:22b model running locally with Ollama
         ChatLanguageModel model = OllamaChatModel.builder()
             .baseUrl("http://localhost:11434")
-            .modelName("codeqwen:7b")
+            .modelName("codestral:22b")
             .temperature(0.0)
             .build();
 
         // simulating a code completion request
         String message = """
-            <|im_start|>import java.time.LocalDate;
+            [PREFIX]import java.time.LocalDate;
             import java.time.Period;
 
             class AgeCalculator {
                 static int calculateAge(LocalDate birthDate, LocalDate currentDate) {
                     if (birthDate != null && currentDate != null) {
-                        <|im_end|>
+                        [SUFFIX]
                     } else {
                         return 0;
                     }
                 }
-            }
+            }[MIDDLE]
         """;
         System.out.println("\n>>>\n" + message);
 

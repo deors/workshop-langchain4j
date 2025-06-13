@@ -1,4 +1,4 @@
-package deors.training.langchain4j;
+package deors.training.langchain4j.image;
 
 import dev.langchain4j.data.image.Image;
 import dev.langchain4j.model.image.ImageModel;

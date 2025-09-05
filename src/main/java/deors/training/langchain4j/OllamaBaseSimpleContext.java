@@ -8,6 +8,8 @@ import dev.langchain4j.model.ollama.OllamaChatModel;
 
 import static dev.langchain4j.data.message.UserMessage.userMessage;
 
+import java.time.Duration;
+
 public class OllamaBaseSimpleContext {
 
     static void simpleContext(String baseUrl, String modelName) {
@@ -15,6 +17,7 @@ public class OllamaBaseSimpleContext {
         ChatLanguageModel model = OllamaChatModel.builder()
             .baseUrl(baseUrl)
             .modelName(modelName)
+            .timeout(Duration.ofSeconds(300))
             .temperature(0.0)
             .build();
 

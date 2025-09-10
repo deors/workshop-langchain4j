@@ -23,39 +23,39 @@ public class OpenAISimpleContext {
             300, new OpenAiTokenizer(OpenAiChatModelName.GPT_4_O_MINI));
 
         // initial prompt with name and location
-        String message1 = "Hello world! My name is Jorge and I'm writing this from the conference stage.";
-        chatMemory.add(userMessage(message1));
-        System.out.println("\n>>> " + message1);
+        String message = "Hello world! My name is Jorge and I'm writing this from the conference stage.";
+        chatMemory.add(userMessage(message));
+        System.out.println("\n>>> " + message);
 
         AiMessage answer = model.generate(chatMemory.messages()).content();
         System.out.println(answer.text());
         chatMemory.add(answer);
 
         // ask for the name
-        String message2 = "What is my name?";
-        chatMemory.add(userMessage(message2));
-        System.out.println("\n>>> " + message2);
+        message = "What is my name?";
+        chatMemory.add(userMessage(message));
+        System.out.println("\n>>> " + message);
 
-        AiMessage answerWithName = model.generate(chatMemory.messages()).content();
-        System.out.println(answerWithName.text());
-        chatMemory.add(answerWithName);
+        answer = model.generate(chatMemory.messages()).content();
+        System.out.println(answer.text());
+        chatMemory.add(answer);
 
         // ask for the location
-        String message3 = "From where I'm writing this message?";
-        chatMemory.add(userMessage(message3));
-        System.out.println("\n>>> " + message3);
+        message = "From where I'm writing this message?";
+        chatMemory.add(userMessage(message));
+        System.out.println("\n>>> " + message);
 
-        AiMessage answerWithLocation = model.generate(chatMemory.messages()).content();
-        System.out.println(answerWithLocation.text());
-        chatMemory.add(answerWithLocation);
+        answer = model.generate(chatMemory.messages()).content();
+        System.out.println(answer.text());
+        chatMemory.add(answer);
 
-        // ask about OpenSouthCode
-        String message4 = "What do you know about technical conferences in Spain?";
-        chatMemory.add(userMessage(message4));
-        System.out.println("\n>>> " + message4);
+        // ask about the event
+        message = "What do you know about technical conferences in Spain?";
+        chatMemory.add(userMessage(message));
+        System.out.println("\n>>> " + message);
 
-        AiMessage answerAboutOSC = model.generate(chatMemory.messages()).content();
-        System.out.println(answerAboutOSC.text());
-        chatMemory.add(answerAboutOSC);
+        answer = model.generate(chatMemory.messages()).content();
+        System.out.println(answer.text());
+        chatMemory.add(answer);
     }
 }

@@ -6,7 +6,7 @@ import dev.langchain4j.model.openai.OpenAiChatModel;
 public class OpenAIAskAboutCode {
 
     void main() {
-        // loads a model running locally with Ollama
+        // OpenAI model
         ChatLanguageModel model = OpenAiChatModel.builder()
             .apiKey(System.getenv("OPENAI_API_KEY"))
             .build();

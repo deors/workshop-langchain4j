@@ -1,0 +1,40 @@
+package deors.training.langchain4j;
+
+import dev.langchain4j.model.chat.ChatLanguageModel;
+import dev.langchain4j.model.vertexai.VertexAiGeminiChatModel;
+
+public class VertexAIAskAboutCode {
+
+    void main() {
+        // Vertex AI model
+        ChatLanguageModel model = VertexAiGeminiChatModel.builder()
+            .project(System.getenv("VERTEXAI_PROJECT_ID"))
+            .location("us-central1")
+            .modelName("gemini-2.5-flash")
+            .build();
+
+        // the first prompt
+        String message = """
+            You are a senior software engineer, expert with open source technologies.
+            Could you provide example code to sort a list of dates in Java and Go languages?
+        """;
+        System.out.println("\n>>>\n" + message);
+
+        String answer = model.generate(message);
+        System.out.println(answer);
+
+        // the second prompt
+        message = """
+            You are a senior software engineer, expert with open source technologies,
+            specially with Java and the Spring Boot framework.
+            Consider a domain entity named Film with attributes id, title,
+            and release date.
+            Could you provide the simplest code to start a web server and return
+            RESTful responses to the Film domain entity?
+        """;
+        System.out.println("\n>>>\n" + message);
+
+        answer = model.generate(message);
+        System.out.println(answer);
+    }
+}

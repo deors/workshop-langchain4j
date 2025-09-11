@@ -11,6 +11,7 @@ public class OpenAIHelloImage {
         // OpenAI image model
         ImageModel model = OpenAiImageModel.builder()
             .apiKey(System.getenv("OPENAI_API_KEY"))
+            .modelName(dev.langchain4j.model.openai.OpenAiImageModelName.DALL_E_3)
             .build();
 
         Response<Image> response = model.generate("""

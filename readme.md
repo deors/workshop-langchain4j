@@ -2,7 +2,7 @@
 
 Workshop about GenAI-enabled applications powered with Langchain4j.
 
-This workshop was first delivered as a conference talk in OpenSouthCode 2024. Also delivered as a talk in Commif Conf 2025, and in workshop format in OpenSlava 2025.
+This workshop was first delivered as a conference talk at OpenSouthCode 2024. Also delivered as a talk at Commif Conf 2025, and in workshop format at OpenSlava 2025.
 
 ## Introduction and general instructions
 
@@ -12,9 +12,16 @@ The recommended approach is to follow the instructions in this ```README.md``` f
 
 ## Workshop pre-requisites
 
-Pre-requisites are simple: Java 25, Apache Maven 3.9.11, and Ollama 0.12.2 with any models you want to try. And, of course, your favorite IDE. The code also works with Java 24 and preview features enabled, and will likely work with any modern Maven 3.x version and any recent Ollama versions (I've been working with several Ollama versions in the last few months without impact).
+Pre-requisites are simple:
 
-Although out of scope for the actual workshop content, the repo also has OpenAI and Vertex AI examples that you can try out. Take the following into consideration before running them:
+- Java 25
+- Apache Maven 3.9.11
+- Ollama 0.12.2 with any models you want to try
+- And, of course, your favorite IDE
+
+The code also works on Java 24 with preview features enabled, with any modern Maven 3.x version, and with any recent Ollama versions (I've been working with several Maven and Ollama versions in the last few months without impact on the source code).
+
+Although out of scope for the current workshop content, the repo also has OpenAI and Vertex AI examples that you can try out. Take the following into consideration before running them:
 
 - For OpenAI examples, you need to be a registered paid user. Provide a valid token in environment variable ```OPENAI_API_KEY```.
 

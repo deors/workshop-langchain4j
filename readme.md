@@ -19,7 +19,7 @@ Pre-requisites are simple:
 - Ollama 0.12.2 with any models you want to try
 - And, of course, your favorite IDE
 
-The code also works on Java 24 with preview features enabled, with any modern Maven 3.x version, and with any recent Ollama versions (I've been working with several Maven and Ollama versions in the last few months without impact on the source code).
+The code also works on Java 24 with preview features enabled, with any modern Maven 3.x version, and with any recent Ollama versions (I've been working with Java 24 before 25 was released and with several Maven and Ollama versions in the last few months without impact on the source code).
 
 Although out of scope for the current workshop content, the repo also has OpenAI and Vertex AI examples that you can try out. Take the following into consideration before running them:
 

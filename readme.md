@@ -31,15 +31,24 @@ Although out of scope for the current workshop content, the repo also has OpenAI
 
 This is the agenda for the workshop:
 
-1. Introduction to Langchain4j and Ollama
-2. A brief guide to model management with Ollama
-3. Langchain4j "Hello World"
-4. Managing context (a.k.a. chat memory)
-5. Using local models for coding assistance
-6. Implementing RAG (retrieval augmented generation)
-7. Final words
+- [workshop-langchain4j](#workshop-langchain4j)
+  - [Introduction and general instructions](#introduction-and-general-instructions)
+  - [Workshop pre-requisites](#workshop-pre-requisites)
+  - [Workshop agenda](#workshop-agenda)
+  - [Workshop activities](#workshop-activities)
+    - [1. Introduction to Langchain4j and Ollama](#1-introduction-to-langchain4j-and-ollama)
+    - [2. A brief guide to model management with Ollama](#2-a-brief-guide-to-model-management-with-ollama)
+      - [2.1. Selecting a model for the workshop](#21-selecting-a-model-for-the-workshop)
+      - [2.2. Model recommendations for small resource-constrained computers](#22-model-recommendations-for-small-resource-constrained-computers)
+      - [2.3. Model recommendations for medium resource-limited computers](#23-model-recommendations-for-medium-resource-limited-computers)
+      - [2.4. Model recommendations for more capable computers](#24-model-recommendations-for-more-capable-computers)
+    - [3. Langchain4j "Hello World"](#3-langchain4j-hello-world)
+    - [4. Managing context (a.k.a. chat memory)](#4-managing-context-aka-chat-memory)
+    - [5. Using local models for coding assistance](#5-using-local-models-for-coding-assistance)
+    - [6. Implementing RAG (retrieval augmented generation)](#6-implementing-rag-retrieval-augmented-generation)
+    - [7. Final words](#7-final-words)
 
-## Workshop content
+## Workshop activities
 
 ### 1. Introduction to Langchain4j and Ollama
 
@@ -68,7 +77,7 @@ Using Ollama GUI and CLI is quite straightforward, but I will list below the mai
 - ```ollama ps```: Lists the models running in the server.
 - ```ollama rm <model_name:model_variant>```: Removes the model from the computer.
 
-### 2.1. Selecting a model for the workshop
+#### 2.1. Selecting a model for the workshop
 
 Ollama registry has a huge and growing collection of models available. This workshop has no limitations or coupling to specific models, so you are welcomed to try and use whichever you want. We strongly recommend to experiment and compare, as each model has its own strengths and limitations.
 
@@ -80,7 +89,7 @@ However, as this is an approach for local model inference, we have a strong limi
 
 Fortunately, small and middle-sized models in the 2-20 GB range are very capable and more than enough for experimentation, while you have the peace of mind that your solution can scale up to large models.
 
-### 2.2. Model recommendations for small resource-constrained computers
+#### 2.2. Model recommendations for small resource-constrained computers
 
 Some recommendations for you if you have a computer with very limited resources (~8GB VRAM) or without a strong GPU:
 
@@ -91,7 +100,7 @@ Some recommendations for you if you have a computer with very limited resources 
 - ```gemma3:4b```
 - ```phi3:3.8b```
 
-### 2.3. Model recommendations for medium resource-limited computers
+#### 2.3. Model recommendations for medium resource-limited computers
 
 Some recommendations for you if you have a computer with limited resources (~16GB VRAM) and a dedicated GPU:
 
@@ -103,7 +112,7 @@ Some recommendations for you if you have a computer with limited resources (~16G
 - ```gemma3:12b```
 - ```phi3:14b```
 
-### 2.4. Model recommendations for more capable computers
+#### 2.4. Model recommendations for more capable computers
 
 Some recommendations for you if you have a capable computer (as per Today's standards, ~32GB VRAM) and a strong dedicated GPU (e.g., NVIDIA RTX or Apple Silicon):
 
@@ -117,3 +126,20 @@ It is also interesting to consider "coding-oriented" models to support in softwa
 - ```qwen3-coder:30b```
 - ```devstral:24b```
 
+### 3. Langchain4j "Hello World"
+
+TBC
+
+### 4. Managing context (a.k.a. chat memory)
+
+TBC
+
+### 5. Using local models for coding assistance
+
+TBC
+
+### 6. Implementing RAG (retrieval augmented generation)
+
+TBC
+
+### 7. Final words

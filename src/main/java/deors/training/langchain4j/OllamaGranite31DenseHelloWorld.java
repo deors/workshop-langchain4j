@@ -3,7 +3,7 @@ package deors.training.langchain4j;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 
-public class OllamaGranite31DenseHelloWorld {
+class OllamaGranite31DenseHelloWorld {
 
     void main() {
         // granite3.1-dense:8b model running locally with Ollama

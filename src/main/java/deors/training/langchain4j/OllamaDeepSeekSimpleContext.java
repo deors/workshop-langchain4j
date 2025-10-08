@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaDeepSeekSimpleContext {
+class OllamaDeepSeekSimpleContext {
 
     void main() {
         // deepseek-r1:14b model running locally with Ollama

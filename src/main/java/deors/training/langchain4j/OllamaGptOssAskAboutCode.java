@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaGptOssAskAboutCode {
+class OllamaGptOssAskAboutCode {
 
     void main() {
         // gpt-oss:20b model running locally with Ollama

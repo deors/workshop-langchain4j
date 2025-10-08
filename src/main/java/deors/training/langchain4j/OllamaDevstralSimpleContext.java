@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaDevstralSimpleContext {
+class OllamaDevstralSimpleContext {
 
     void main() {
         // devstral:24b model running locally with Ollama

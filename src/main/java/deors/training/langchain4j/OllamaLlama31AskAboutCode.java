@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaLlama31AskAboutCode {
+class OllamaLlama31AskAboutCode {
 
     void main() {
         // llama3.1:8b model running locally with Ollama

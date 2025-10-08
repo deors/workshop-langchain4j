@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaGranite31DenseAskAboutCode {
+class OllamaGranite31DenseAskAboutCode {
 
     void main() {
         // granite3.1-dense:8b model running locally with Ollama

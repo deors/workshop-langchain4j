@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaMistralSmallAskAboutCode {
+class OllamaMistralSmallAskAboutCode {
 
     void main() {
         // mistral-small:22b model running locally with Ollama

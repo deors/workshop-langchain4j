@@ -3,7 +3,7 @@ package deors.training.langchain4j.codeassist;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 
-public class OllamaCodestralCodeAssist {
+class OllamaCodestralCodeAssist {
 
     void main() {
         // codestral:22b model running locally with Ollama

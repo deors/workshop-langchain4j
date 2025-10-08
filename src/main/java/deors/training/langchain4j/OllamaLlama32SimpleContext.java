@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaLlama32SimpleContext {
+class OllamaLlama32SimpleContext {
 
     void main() {
         // llama3.2:3b model running locally with Ollama

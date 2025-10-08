@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaQwen3CoderAskAboutCode {
+class OllamaQwen3CoderAskAboutCode {
 
     void main() {
         // qwen3-coder:30b model running locally with Ollama

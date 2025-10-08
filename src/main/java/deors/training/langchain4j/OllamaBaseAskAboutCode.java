@@ -5,7 +5,7 @@ import java.time.Duration;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 
-public interface OllamaBaseAskAboutCode {
+interface OllamaBaseAskAboutCode {
 
     static void askAboutCode(String baseUrl, String modelName) {
         // loads a model running locally with Ollama

@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaDeepSeekAskAboutCode {
+class OllamaDeepSeekAskAboutCode {
 
     void main() {
         // deepseek-r1:14b model running locally with Ollama

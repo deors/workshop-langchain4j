@@ -10,7 +10,7 @@ import static dev.langchain4j.data.message.UserMessage.userMessage;
 
 import java.time.Duration;
 
-public class OllamaBaseSimpleContext {
+interface OllamaBaseSimpleContext {
 
     static void simpleContext(String baseUrl, String modelName) {
         // loads a model running locally with Ollama

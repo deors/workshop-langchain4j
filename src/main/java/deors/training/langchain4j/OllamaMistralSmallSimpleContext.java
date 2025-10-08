@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaMistralSmallSimpleContext {
+class OllamaMistralSmallSimpleContext {
 
     void main() {
         // mistral-small:22b model running locally with Ollama

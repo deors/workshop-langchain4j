@@ -8,7 +8,7 @@ import dev.langchain4j.model.vertexai.VertexAiGeminiChatModel;
 
 import static dev.langchain4j.data.message.UserMessage.userMessage;
 
-public class VertexAISimpleContext {
+class VertexAISimpleContext {
 
     void main() {
         // Vertex AI model

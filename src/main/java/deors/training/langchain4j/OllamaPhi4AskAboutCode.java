@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaPhi4AskAboutCode {
+class OllamaPhi4AskAboutCode {
 
     void main() {
         // phi4:14b model running locally with Ollama

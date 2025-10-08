@@ -3,7 +3,7 @@ package deors.training.langchain4j;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 
-public class OllamaDeepSeekHelloWorld {
+class OllamaDeepSeekHelloWorld {
 
     void main() {
         // deepseek-r1:14b model running locally with Ollama

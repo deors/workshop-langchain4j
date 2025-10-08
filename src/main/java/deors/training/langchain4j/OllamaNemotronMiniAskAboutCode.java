@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaNemotronMiniAskAboutCode {
+class OllamaNemotronMiniAskAboutCode {
 
     void main() {
         // nemotron-mini:4b model running locally with Ollama

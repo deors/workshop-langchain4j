@@ -10,7 +10,7 @@ import dev.langchain4j.model.openai.OpenAiTokenizer;
 
 import static dev.langchain4j.data.message.UserMessage.userMessage;
 
-public class OpenAISimpleContext {
+class OpenAISimpleContext {
 
     void main() {
         // OpenAI model

@@ -8,7 +8,7 @@ import dev.langchain4j.model.ollama.OllamaChatModel;
 
 import static dev.langchain4j.data.message.UserMessage.userMessage;
 
-public class AboutCommitConfSimple {
+class AboutCommitConfSimple {
 
     void main() {
         // deepseek-r1:8b model running locally with Ollama

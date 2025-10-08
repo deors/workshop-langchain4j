@@ -3,7 +3,7 @@ package deors.training.langchain4j.codeassist;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 
-public class OllamaCodeGraniteCodeAssist {
+class OllamaCodeGraniteCodeAssist {
 
     void main() {
         // granite-code:8b model running locally with Ollama

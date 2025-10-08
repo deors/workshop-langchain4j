@@ -1,6 +1,6 @@
 package deors.training.langchain4j;
 
-public class OllamaGemma3SimpleContext {
+class OllamaGemma3SimpleContext {
 
     void main() {
         // gemma3:14b model running locally with Ollama

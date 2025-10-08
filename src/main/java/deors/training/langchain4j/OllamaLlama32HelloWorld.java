@@ -3,7 +3,7 @@ package deors.training.langchain4j;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.ollama.OllamaChatModel;
 
-public class OllamaLlama32HelloWorld {
+class OllamaLlama32HelloWorld {
 
     void main() {
         // llama3.2:3b model running locally with Ollama

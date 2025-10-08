@@ -3,7 +3,7 @@ package deors.training.langchain4j;
 import dev.langchain4j.model.chat.ChatLanguageModel;
 import dev.langchain4j.model.vertexai.VertexAiGeminiChatModel;
 
-public class VertexAIAskAboutCode {
+class VertexAIAskAboutCode {
 
     void main() {
         // Vertex AI model

@@ -5,7 +5,7 @@ import dev.langchain4j.model.image.ImageModel;
 import dev.langchain4j.model.openai.OpenAiImageModel;
 import dev.langchain4j.model.output.Response;
 
-public class OpenAIHelloImage {
+class OpenAIHelloImage {
     
     void main() {
         // OpenAI image model

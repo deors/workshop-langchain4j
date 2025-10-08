@@ -21,6 +21,8 @@ Pre-requisites are simple:
 
 The code also works on Java 24 with preview features enabled, with any modern Maven 3.x version, and with any recent Ollama versions (I've been working with Java 24 before 25 was released and with several Maven and Ollama versions in the last few months without impact on the source code).
 
+It is also recommended to download in advance any model that you intend to use. This is recommended to reduce the risk of not being able to download the models during the workshop. Models, even small ones, are big files and bandwidth might be limited if multiple people try to download multi-GB files at the same moment.
+
 Although out of scope for the current workshop content, the repo also has OpenAI and Vertex AI examples that you can try out. Take the following into consideration before running them:
 
 - For OpenAI examples, you need to be a registered paid user. Provide a valid token in environment variable ```OPENAI_API_KEY```.
